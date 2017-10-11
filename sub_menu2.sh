@@ -1,8 +1,60 @@
 #!/bin/bashecho
 
+viewFile(){
+
+cat << FILES
+-------------------------------------------------
+#####		    FILE LIST               #####
+-------------------------------------------------
+FILES
+
+ls $1
+
+read -p 'Please enter the name of the file to view: ' fileName
+clear
+less < $1$fileName
+
+sh ./sub_menu2.sh $1
+}
+
+editFile(){
+cat << FILES
+-------------------------------------------------
+#####		    FILE LIST               #####
+-------------------------------------------------
+FILES
+
+ls $1
+
+read -p 'Please enter the name of the file to edit: ' fileName
+clear
+nano $1$fileName
+
+sh ./sub_menu2.sh $1
+}
+
+createFile(){
+
+cat << FILES
+-------------------------------------------------
+#####		    FILE LIST               #####
+-------------------------------------------------
+FILES
+
+ls $1
+
+read -p 'Please enter the name of the file: ' fileName
+clear
+touch < $1$fileName
+
+sh ./sub_menu2.sh $1
+}
+
+logChanges(){
+sh logChange.sh $1
+}
 
 clear
-
 
 cat << MENU
 -------------------------------------------------
@@ -19,13 +71,18 @@ cat << MENU
 -------------------------------------------------
 MENU
 
+logChanges $1
 echo $1
 
 read option
 case "$option" in
-1) echo "yay";;
-2);;
-3);;
+1)viewFile $1;;
+2)editFile $1; logChanges $1;;
+3)createFile $1; logChanges $1;;
+4);;
+5);;
+6);;
+7);;
 0) clear; sh ./sub_menu1.sh ;;
 *) sh ./sub_menu2.sh $1 ;;
 esac 
