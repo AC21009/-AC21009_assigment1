@@ -30,6 +30,7 @@ read -p 'Please enter the name of the file to edit: ' fileName
 clear
 nano $1$fileName
 
+logChanges $1
 sh ./sub_menu2.sh $1
 }
 
@@ -47,11 +48,18 @@ read -p 'Please enter the name of the file: ' fileName
 clear
 touch < $1$fileName
 
+logChanges $1
 sh ./sub_menu2.sh $1
 }
 
 logChanges(){
 sh logChange.sh $1
+}
+
+viewLog(){
+logChanges $1
+less "$1.repo_files/log.txt"
+sh ./sub_menu2.sh $1
 }
 
 clear
@@ -71,16 +79,15 @@ cat << MENU
 -------------------------------------------------
 MENU
 
-logChanges $1
 echo $1
 
 read option
 case "$option" in
 1)viewFile $1;;
-2)editFile $1; logChanges $1;;
-3)createFile $1; logChanges $1;;
+2)editFile $1;;
+3)createFile $1;;
 4);;
-5);;
+5)viewLog $1;;
 6);;
 7);;
 0) clear; sh ./sub_menu1.sh ;;
