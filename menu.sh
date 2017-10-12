@@ -16,8 +16,8 @@ MENU
 read option
 case "$option" in
 1) sh ./sub_menu1.sh ;;
-2);;
-3);;
+2) echo "Enter the path of the directory you wish to be under version control:"; read input; sh create_repo.sh $input ;;
+3)echo "Enter the path of the repository you wish to no longer be under version control:"; read input; sh remove_repo.sh $input ;;
 0) clear; echo "Exiting..."; exit 0 ;;
 *) sh ./menu.sh ;;
 esac
