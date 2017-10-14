@@ -89,9 +89,9 @@ commitRepo(){
 	rm -R "$1/.repo_files/ghost_repo"
 	rsync -av --exclude=".*" "$1" "$1/.repo_files/"
 	mv "$1/.repo_files/$(basename $1)" "$1/.repo_files/ghost_repo"
-	"####	COMMIT	####" >> "$1/.repo_files/commit_log.txt"
+	[ echo "####	COMMIT	####" ] >> "$1/.repo_files/commit_log.txt"
 	cat "$1/.repo_files/log.txt" >> "$1/.repo_files/commit_log.txt"
-	"" > "$1/.repo_files/log.txt"
+	[ echo "" ] > "$1/.repo_files/log.txt"
 	
 	sh ./sub_menu2.sh $1
 }
