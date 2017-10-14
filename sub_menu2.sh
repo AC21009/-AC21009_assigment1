@@ -34,6 +34,7 @@ clear
 nano "$1/$fileName"
 
 logChanges $1
+clear
 sh ./sub_menu2.sh $1
 }
 
@@ -53,6 +54,7 @@ clear
 touch < "$1/$fileName"
 
 logChanges $1
+clear
 sh ./sub_menu2.sh $1
 }
 
@@ -71,6 +73,7 @@ clear
 rm -R "$1/$fileName"
 
 	logChanges $1
+	clear
 	sh ./sub_menu2.sh $1
 }
 
@@ -82,6 +85,7 @@ viewLog(){
 
 commitRepo(){
 	logChanges $1
+	clear
 	rm -R "$1/.repo_files/ghost_repo"
 	rsync -av --exclude=".*" "$1" "$1/.repo_files/"
 	mv "$1/.repo_files/$(basename $1)" "$1/.repo_files/ghost_repo"
@@ -114,6 +118,8 @@ sh restore_backup.sh $1 $fileName
 sh ./sub_menu2.sh $1
 }
 
+logChanges $1
+
 clear
 
 cat << MENU
@@ -133,7 +139,6 @@ cat << MENU
 -------------------------------------------------
 MENU
 
-logChanges $1
 echo $1
 echo -------------------------------------------------
 ls -1 $1
