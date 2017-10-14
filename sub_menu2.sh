@@ -89,6 +89,7 @@ cat << MENU
 5. View Log	
 6. Restore Backup
 7. Compile Code
+8. Archive Repository
 0. Back
 -------------------------------------------------
 MENU
@@ -107,6 +108,7 @@ case "$option" in
 5);;
 6)restoreBackup $1;;
 7);;
+8)sh ./archive.sh $1;;
 0) clear; sh ./sub_menu1.sh ;;
 *) sh ./sub_menu2.sh $1 ;;
 esac 
