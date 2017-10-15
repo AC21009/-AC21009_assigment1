@@ -6,7 +6,7 @@ log=$1"/.repo_files/log.txt"
 test -e "$1/.repo_files/" || (mkdir "$1/.repo_files/"; chmod ug+rwx "$1/.repo_files/") 
 
 #Make ghost copies of the repo files if there is not a ghost repo located in the repo_files
-test  -e "$1/.repo_files/ghost_repo" || (rsync -av --exclude=".*" "$1" "$1/.repo_files/"; mv "$1/.repo_files/$(basename $1)" "$1/.repo_files/ghost_repo")
+test  -e "$1/.repo_files/ghost_repo" || mkdir "$1/.repo_files/ghost_repo"
 
 logDirectory(){
 	#Check to see if changes have been made

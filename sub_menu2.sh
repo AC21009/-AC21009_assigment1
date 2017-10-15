@@ -51,7 +51,7 @@ ls -1 $1
 
 read -p 'Please enter the name of the file: ' fileName
 clear
-touch < "$1/$fileName"
+touch "$1/$fileName"
 
 logChanges $1
 clear
@@ -89,11 +89,38 @@ commitRepo(){
 	rm -R "$1/.repo_files/ghost_repo"
 	rsync -av --exclude=".*" "$1" "$1/.repo_files/"
 	mv "$1/.repo_files/$(basename $1)" "$1/.repo_files/ghost_repo"
-	[ echo "####	COMMIT	####" ] >> "$1/.repo_files/commit_log.txt"
+	echo "####	COMMIT	####" >> "$1/.repo_files/commit_log.txt"
 	cat "$1/.repo_files/log.txt" >> "$1/.repo_files/commit_log.txt"
-	[ echo "" ] > "$1/.repo_files/log.txt"
+	echo "####	COMMITEND	####" >> "$1/.repo_files/commit_log.txt"
+	cat "$1/.repo_files/commit_log.txt"
+	> "$1/.repo_files/log.txt"
 	
+	clear
 	sh ./sub_menu2.sh $1
+}
+
+compileCode(){
+cat << FILES
+-------------------------------------------------
+#####		    FILE LIST               #####
+-------------------------------------------------
+FILES
+
+clear
+ls -1 $1
+
+read -p 'Please enter the name of the file you want to compile: ' fileName
+read - p 'Please enter the file names of any dependencies for the file you want to compile with a space between each one: ' fileDepends
+clear
+
+IFS=" " read -r -a depends <<< $fileDepends
+
+for i in depends; do
+	${depends[$i]}="$1/${depends[$i]}"
+done
+
+gcc -o "$filename_compiled" -Wall $(eval $(ls $depends))
+
 }
 
 logChanges(){
@@ -151,7 +178,7 @@ case "$option" in
 4)deleteFile $1;;
 5)viewLog $1;;
 6)restoreBackup $1;;
-7);;
+7)compileCode $1;;
 8)sh ./archive.sh $1;;
 9)commitRepo $1;;
 0) clear; sh ./sub_menu1.sh;;
