@@ -82,7 +82,17 @@ rm -R "$1/$fileName"
 
 viewLog(){
 	logChanges $1
-	less "$1/.repo_files/log.txt"
+	clear
+	echo "#####	[LOCAL] log.txt		#####"
+	echo ""
+	cat "$1/.repo_files/log.txt"
+	echo ""
+	echo "#####	[GLOBAL] commit_log.txt		#####"
+	echo ""
+	cat "$1/.repo_files/commit_log.txt"
+	echo ""
+	read -p 'Log End: Please press enter to continue.' temp
+
 	sh ./sub_menu2.sh $1
 }
 
