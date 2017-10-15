@@ -1,5 +1,6 @@
 #!/bin/bashecho
-
+# John Parsons 160006092
+# Douglas Parkinson 
 
 clear
 
