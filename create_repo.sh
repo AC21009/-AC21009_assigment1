@@ -1,6 +1,6 @@
 #!/bin/bashecho
 # John Parsons 160006092
-# Douglas Parkinson 
+# Douglas Parkinson 1600012359 
 
 clear
 
@@ -12,8 +12,10 @@ then
 clear
 echo "Repoistiry already exists. Press ENTER to continue:"
 else
-mkdir -p $1/backups
-cp $1/* $1/backups
+dirName="$(basename $1)"
+mkdir -p $HOME/repo_data/$dirName
+mkdir -p $HOME/repo_data/$dirName/backups
+cp $1/* $HOME/repo_data/$dirName/backups
 clear
 echo $1 >> $HOME/repo_data/repo_data.txt #add path of new repo to text file
 echo "Repository sucessfully created! Press ENTER to continue:"

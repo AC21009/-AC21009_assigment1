@@ -1,6 +1,6 @@
 #!/bin/bashecho
 # John Parsons 160006092
-# Douglas Parkinson 
+# Douglas Parkinson 1600012359
 
 log=$1"/.repo_files/log.txt"
 

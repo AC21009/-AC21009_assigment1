@@ -1,6 +1,6 @@
 #!/bin/bashecho
 # John Parsons 160006092
-# Douglas Parkinson 
+# Douglas Parkinson 1600012359
 
 viewFile(){
 
@@ -30,8 +30,9 @@ FILES
 clear
 ls -1 $1
 
+dirName="$(basename $1)"
 read -p 'Please enter the name of the file to edit: ' fileName
-cp -f $1/$fileName $1/backups #backup file before editing
+cp -f $1/$fileName $HOME/repo_data/$dirName/backups #backup file before editing
 clear
 nano "$1/$fileName"
 
