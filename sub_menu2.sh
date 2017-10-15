@@ -115,7 +115,8 @@ read -p 'Please enter the name of the file you want to compile: ' fileName
 read - p 'Please enter the file names of any dependencies for the file you want to compile with a space between each one: ' fileDepends
 clear
 
-IFS=" " read -r -a depends <<< $fileDepends
+set -f
+depends=${"fileDepends"// /}
 
 for i in depends; do
 	${depends[$i]}="$1/${depends[$i]}"

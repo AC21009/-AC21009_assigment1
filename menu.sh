@@ -1,6 +1,6 @@
 #!/bin/bashecho
 # John Parsons 160006092
-# Douglas Parkinson 
+# Douglas Parkinson 160012359
 
 clear
 cat << MENU
